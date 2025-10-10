@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	c := popcount.PopCount(0x123456789ABCDEF0)
+	c := popcount.PopCount64(0x123456789ABCDEF0)
 	fmt.Printf("所含有的1bit的个数为%v", c)
 
 }
