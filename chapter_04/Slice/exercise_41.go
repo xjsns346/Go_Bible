@@ -2,17 +2,12 @@
 
 package Slice
 
-import "unsafe"
+func Reverseint(x *[6]int) {
+	//这里的判断条件不可以是i != j，因为当数组长度为偶数时，不会出现两者相等的情况，二者会交叉错过。
+	for i, j := 0, 5; i < j; i, j = i+1, j-1 {
+		//go语言中去掉了指针算数，无法像C那样操作，所以就解引用指针，使用并行赋值来交换数据。
+		(*x)[i], (*x)[j] = (*x)[j], (*x)[i]
 
-func Reverseint(x []int) []int {
-
-	b := []int{}
-
-	for i := len(x) - 1; i > (-1); i-- {
-		a := (*int)(unsafe.Pointer(&x[i]))
-		b = append(b, *a)
 	}
-
-	return b
 
 }

@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	x := []int{1, 5, 9, 6}
-
-	b := Slice.Reverseint(x)
-	fmt.Printf("%v", b)
+	x := [6]int{1, 5, 9, 6, 0, 0}
+	ptr := &x
+	Slice.Reverseint(ptr)
+	fmt.Printf("%v", x)
 }
