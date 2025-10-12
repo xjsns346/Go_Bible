@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	x := [6]int{1, 5, 9, 6, 0, 0}
-	ptr := &x
-	Slice.Reverseint(ptr)
+	x := []int{1, 5, 9, 6, 0, 0}
+
+	Slice.Rotate(x, 2)
 	fmt.Printf("%v", x)
 }
