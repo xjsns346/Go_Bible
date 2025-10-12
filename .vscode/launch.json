@@ -6,13 +6,29 @@
     "configurations": [
 
         {
+            //name- 要显示在“调试启动配置”下拉列表中的读者友好名称。
+            // name：出现在 VS Code 调试面板的下拉菜单中
             "name": "Launch Package",
+            //调试器类型，这里是go
             "type": "go",
+            // request：调试方式
+            // launch：启动新进程进行调试
+            // attach：附加到已运行的进程
             "request": "launch",
+            // mode：调试模式
+            // 常用值有：
+            // - auto（自动判断）
+            // - debug（正常模式）
+            // - test（调试测试）
+            // - exec（调试已编译的二进制）
             "mode": "auto",
-            "program":"D:\\Go_Bible\\chapter_01\\Duplicate\\dup.go",
-            "cwd": "D:\\Go_Bible\\chapter_01\\Duplicate",
-            "args": ["book.txt","book_2.txt"]
+            // program：要调试的 Go 程序主入口
+            "program":"D:/Go_Bible/chapter_04/main.go",
+            // cwd（current working directory）：程序运行时的工作目录
+            // 如果你的 main.go 依赖了其他包或文件，这个目录会影响相对路径解析
+            "cwd": "D:/Go_Bible/chapter_04",
+            // args：传给 main 函数 os.Args 的参数（数组）
+            "args": []
         }
     ]
 }

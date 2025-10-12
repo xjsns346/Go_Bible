@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"gobible/chapter_04/Slice"
+	"time"
 )
 
 func main() {
-	x := []int{1, 5, 9, 6, 0, 0}
+	strings := []string{"a", "b", "b", "b", "c", "d", "e", "e"}
 
-	Slice.Rotate(x, 2)
-	fmt.Printf("%v", x)
+	strings = Slice.CompactStrings(strings)
+	fmt.Printf("%v", strings)
+	time.Sleep(10 * time.Second)
 }
