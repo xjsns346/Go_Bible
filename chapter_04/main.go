@@ -1,17 +1,13 @@
 package main
 
 import (
-	"crypto/sha256"
 	"fmt"
-	"gobible/chapter_04/Array"
+	"gobible/chapter_04/Slice"
 )
 
 func main() {
-	a := sha256.Sum256([]byte("Hello,World!"))
-	b := sha256.Sum256([]byte("hello,world!"))
-	fmt.Printf("%v,%v", a, b)
-	count := Array.DifCount(a, b)
+	x := []int{1, 5, 9, 6}
 
-	fmt.Printf("不同的bit位数为%v", count)
-
+	b := Slice.Reverseint(x)
+	fmt.Printf("%v", b)
 }
