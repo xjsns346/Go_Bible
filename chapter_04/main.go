@@ -7,9 +7,15 @@ import (
 )
 
 func main() {
-	strings := []string{"a", "b", "b", "b", "c", "d", "e", "e"}
-
-	strings = Slice.CompactStrings(strings)
-	fmt.Printf("%v", strings)
+	nums := "123   456   789"
+	bytes := []byte(nums)
+	s := "he   llo,  world  !"
+	sbytes := []byte(s)
+	sbytes = Slice.RemoveExtraSpaces(sbytes)
+	bytes = Slice.RemoveExtraSpaces(bytes)
+	fmt.Printf("%v\n", bytes)
+	fmt.Printf("%v\n", sbytes)
+	fmt.Printf("%v\n", string(sbytes))
+	fmt.Printf("%v\n", string(bytes))
 	time.Sleep(10 * time.Second)
 }
