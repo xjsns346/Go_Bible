@@ -1,6 +1,6 @@
 //练习 4.3： 重写reverse函数，使用数组指针代替slice。
 
-package Slice
+package slice
 
 func Reverseint(x *[6]int) {
 	//这里的判断条件不可以是i != j，因为当数组长度为偶数时，不会出现两者相等的情况，二者会交叉错过。

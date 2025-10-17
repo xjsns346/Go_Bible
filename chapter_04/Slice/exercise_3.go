@@ -1,5 +1,5 @@
 // 练习 4.5： 写一个函数在原地完成消除[]string中相邻重复的字符串的操作。
-package Slice
+package slice
 
 func CompactStrings(strings []string) []string {
 	for i := 0; i < len(strings)-1; i++ {
@@ -25,7 +25,7 @@ func Delete(strings []string, i int) []string {
 //代码更加精简，并且思路独特。
 //demo :  []string{"a", "b", "b", "b", "c", "d", "e"}转变为{"a", "b", "c", "d", "e","d", "e"}最后取出{"a","b","c","d","e"}
 
-func eliminateAdjacentDuplicates(s []string) []string {
+func EliminateAdjacentDuplicates(s []int) []int {
 	if len(s) == 0 {
 		return s
 	}
