@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	revalues "gobible/chapter_05/Revalues"
+	funcvalue "gobible/chapter_05/FuncValue"
 )
 
 func main() {
-	w, i, err := revalues.CountWordsAndImages("https://golangstar.cn/go_series/introduction.html")
+	a := "126678"
+	b := "66"
+	c, err := funcvalue.Expand(a, b, funcvalue.F_example)
 	if err != nil {
-		fmt.Printf("统计失败，报错为%v\n", err)
+		fmt.Printf("报错:%v", err)
 	}
-	fmt.Printf("文字数目为%d,图片数目为%d\n", w, i)
-
+	fmt.Printf("%s", c)
 }

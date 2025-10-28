@@ -23,12 +23,15 @@
             // - exec（调试已编译的二进制）
             "mode": "auto",
             // program：要调试的 Go 程序主入口
-            "program":"D:/Go_Bible/chapter_04/main.go",
+            "program":"D:/Go_Bible/chapter_05/main.go",
             // cwd（current working directory）：程序运行时的工作目录
             // 如果你的 main.go 依赖了其他包或文件，这个目录会影响相对路径解析
-            "cwd": "D:/Go_Bible/chapter_04",
+            "cwd": "D:/Go_Bible/chapter_05",
             // args：传给 main 函数 os.Args 的参数（数组）
-            "args": []
+            "args": [],
+
+            "console": "internalConsole"
+
         }
     ]
 }

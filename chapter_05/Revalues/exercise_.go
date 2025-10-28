@@ -1,4 +1,5 @@
 // 练习 5.5： 实现countWordsAndImages。（参考练习4.9如何分词）
+// 练习5.6太简单，不写了。
 package revalues
 
 import (
