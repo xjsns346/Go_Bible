@@ -1,16 +1,14 @@
 package main
 
-import (
-	"fmt"
-	funcvalue "gobible/chapter_05/FuncValue"
-)
+import "fmt"
 
 func main() {
-	a := "126678"
-	b := "66"
-	c, err := funcvalue.Expand(a, b, funcvalue.F_example)
-	if err != nil {
-		fmt.Printf("报错:%v", err)
+
+	s1 := "你好，世界！"
+	fmt.Printf("%d\n", len(s1))
+	for i := range len(s1) {
+		fmt.Println(s1[i])
+
 	}
-	fmt.Printf("%s", c)
+
 }
