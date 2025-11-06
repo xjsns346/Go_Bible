@@ -88,6 +88,78 @@ MySQL 的系统结构可以分为三层：
 │ - 索引文件、配置文件                       │
 └────────────────────────────────────────────┘
 
+```
+
+
+## MySQL 常用数据类型一览
+
+| 类型分类 | 数据类型 | 说明 | 范例 / 场景 |
+|---|---|---|---|
+| 整数 | TINYINT | -128~127 或 0~255 | boolean常用 tinyint(1) |
+|  | SMALLINT | -32768~32767 | 较小统计数字 |
+|  | MEDIUMINT | -8百万 ~ 8百万 | 中型统计数字 |
+|  | INT / INTEGER | -21亿 ~21亿 | 最常用整型 |
+|  | BIGINT | 超大数 / 64bit | 金额 / ID / 雪花ID 等 |
+| 浮点 | FLOAT | 4字节浮点 | 不建议用于钱 |
+|  | DOUBLE | 8字节浮点 | 科学计算 |
+| 精确小数 | DECIMAL(M,D) | 精确小数 | 金额必须用这个 |
+| 字符串 | CHAR(n) | 定长 | 性别/固定长度code |
+|  | VARCHAR(n) | 变长 | 绝大多数文本字段 |
+|  | TEXT | 最大64KB | comment/content/log |
+|  | MEDIUMTEXT | 最大16MB | 大文本 |
+|  | LONGTEXT | 最大4GB | 非常大文本 |
+| 时间日期 | DATE | YYYY-MM-DD | |
+|  | DATETIME | 日期+时间 | 推荐主用 DATETIME |
+|  | TIMESTAMP | Unix时间戳 | 受时区影响 |
+|  | TIME | 时分秒 | |
+| 二进制 | BINARY(n) | 定长 binary | |
+|  | VARBINARY(n) | 变长 binary | |
+|  | BLOB | 最大64KB | |
+|  | MEDIUMBLOB | 最大16MB | |
+|  | LONGBLOB | 最大4GB | |
+| 枚举集合 | ENUM | 单选预定义 | ENUM('a','b','c') |
+|  | SET | 多选集合 | SET('a','b','c') |
+| JSON | JSON | 官方 JSON 字段 | MySQL 5.7+ |
+
+### 备注建议
+- 金额用 DECIMAL，不用 float/double
+- 时间推荐 DATETIME，不推荐 TIMESTAMP（时区坑多）
+- 大文本 TEXT 系列不要做 where like index 的主字段，性能爆炸差
+- id 一律 bigInt（尤其你写 go）  
+- JSON 真的是 real schema-less，MySQL优化器对 JSON 支持已经够成熟，生产广泛使用中
+
+### 特殊事项
+
+1. CHAR(n) 的 n 是字符数上限，最多 255 字符；实际占用的 byte数取决于字符集。  
+    这部分是历史原因（SQL 标准早期规范），MySQL 设计 CHAR 最大上限就是 0~255 characters，这是 定义层面的限定，不是由 byte 推算来的。
+
+2. 对于 VARCHAR(size) 可变长度字符串而言，最大可占用的存储空间不能超过 65535 bytes。  
+由于 MySQL 本身需要预留 3 bytes 做长度记录的开销，因此实际可用空间为：  
+65535 - 3  
+当使用 MySQL 的 utf8 字符集时（注意：这是 MySQL 的 “3-Byte UTF-8” 版本，不是标准 UTF-8），每个字符最多会占用 3 bytes，因此 VARCHAR 最大可允许的字符数为：  
+(65535 - 3) / 3 = 21844  
+所以 VARCHAR(21844) 是在 MySQL utf8 下理论可设定的最大有效长度。
+若改用 utf8mb4（真正的完善 UTF-8，支持 4 Byte），则最大长度计算公式需要除以 4，并且最大可设定值会进一步变小。
+
+3. utf8 与UTF-8的区别
+
+    | MySQL charset | max bytes / char | 说明   |
+    |:--- |:--- |:--- |
+    | utf8          | 3            | MySQL 自己魔改版，不是标准 UTF-8   |
+    | utf8mb4       | 4         | 真正标准 UTF-8 full coverage |
+
+4. decimal 使用细节
+- m代表总数字位数，不含符号，最大值为65  
+  d代表scale（小数位数），最大值为30    
+
+- decimal 是精确存储（decimal arithmetic），不会像 float/double 那样有二进制误差。
+
+-   m，d的默认值
+    | 写法           | 最终等效定义        |
+    | --- | --- |
+    | decimal      | decimal(10,0) |
+    | decimal(m)   | decimal(m,0)  |
+    | decimal(m,d) | decimal(m,d)  |
 
 
 

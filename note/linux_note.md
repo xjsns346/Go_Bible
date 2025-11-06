@@ -1,6 +1,23 @@
 # Linux系统学习
 
 
+## 实用指令
+| 序号 | 命令 | 功能说明 |
+|-----|-----|------|
+| 1 | `systemctl get-default` | 查询当前系统默认运行级别（systemd 目标） |
+| 2 | `systemctl set-default <目标级别>.target` | 设置系统默认运行级别（例如：`multi-user.target` 或 `graphical.target`） |
+| 3 | `init <数字>` | 临时切换运行级别（传统 SysV 方式，例如 `init 3` 进入多用户模式） |
+| 4 | `pwd` | 显示当前工作目录的绝对路径 |
+| 5 | `ls` | 列出当前目录下的文件和子目录 |
+| 6 | `cd` | 切换当前工作目录（`cd /path` 进入指定路径；`cd ~` 返回主目录） |
+
+
+
+## 常识
+1. Linux下，以.开头的文件是隐藏文件。
+
+
+
 ## 目录结构详解
 
 | 目录           | 全称                    | 主要作用                                                  |
@@ -148,3 +165,14 @@
 | `last`           | 显示登录历史记录                      | `last`                                  |
 | `finger 用户名`     | 显示用户详细信息                      | `finger tom`（需安装 finger）                |
 
+## Linux运行级别
+
+| 运行级别 | 含义说明 | 对应 systemd 目标(target) |
+|---|---|---|
+| 0 | 关机（系统停止） | `poweroff.target` |
+| 1 | 单用户模式（维护模式） | `rescue.target` |
+| 2 | 多用户模式（无网络服务，部分发行版未使用） | `multi-user.target`（部分发行版） |
+| 3 | 多用户模式（完整网络支持，纯命令行） | `multi-user.target` |
+| 4 | 未定义/保留给用户自定义 | 可自定义目标 |
+| 5 | 图形化多用户模式（含显示管理器） | `graphical.target` |
+| 6 | 重启（重新启动系统） | `reboot.target` |

@@ -1,14 +1,17 @@
 package main
 
-import "fmt"
-
-func main() {
-
-	s1 := "你好，世界！"
-	fmt.Printf("%d\n", len(s1))
-	for i := range len(s1) {
-		fmt.Println(s1[i])
-
-	}
-
+type Writer interface {
+	Write(p []byte) (n int, err error)
 }
+
+func count(p []byte) (n int, err error) {}
+
+type a int
+
+func (aa *a) fun(p []byte) (n int, err error) {}
+
+type b struct {
+	bond int
+}
+
+func (b *b) joy(p []byte) (n int, err error) {}
